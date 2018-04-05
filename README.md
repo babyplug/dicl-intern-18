@@ -1,4 +1,4 @@
-### DICL Internship Program 2018
+﻿### DICL Internship Program 2018
 
 สวัสดีน้องๆที่ให้ความสนใจมาฝึกงานที่บริษัท ดิจิตอล อินไซด์เดอร์ จำกัด ในปี 2018 นี้ทุกๆคนนะครับ ก่อนที่จะเข้ามาฝึกงานกับเรา พี่มีบททดสอบเล็กน้อยเพื่อวัดทักษะพื้นฐานสำหรับนักพัฒนา Mobile Developer น้องๆไม่จำเป็นต้องตอบหรือต้องรู้ทุกเรื่องในบททดสอบนี้ เพราะเรามาสามารถมาเรียนรู้กันภายหลังได้ เพียงแต่เราอยากให้น้องๆทุกคนลองทำด้วยตัวเอง ค้นคว้าเอง ทั้งหมดก็เพื่อประโยชน์ของตัวน้องๆเองและบริษัท หากใครสนใจส่งคำตอบกันมานะได้เลยนะครับ ปิดรับสมัครวันที่ 8 เมษายน 18 เวลา 23:59 น.
 
@@ -12,7 +12,86 @@
 
 คำตอบ:
 ```
-?
+package testjson;
+
+import java.io.FileReader;
+import java.util.Iterator;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+
+public class TestJson {
+
+    public static void main(String[] args) {
+        JSONParser parser = new JSONParser();
+        String path = "C:\\Users\\Poramin's\\Documents\\NetBeansProjects\\testJson\\src\\testjson\\data.json";
+
+        try {
+            JSONArray arr = (JSONArray) parser.parse(new FileReader(path));
+            //System.out.println(arr);
+            int i = 0, count = 0;
+            double sum = 0;
+            long score[] = new long[arr.size()];
+
+            for (Object o : arr) {
+                JSONObject std = (JSONObject) o;
+                score[i] = (long) std.get("score");
+                i++;
+            }
+
+            System.out.println("1: avg = " + findAvg(score));
+
+            System.out.println("2: ");
+            for (Object o : arr) {
+                JSONObject std = (JSONObject) o;
+                if (((long) std.get("score")) > 70) {
+                    System.out.print("\tคนที่ " + (count + 1));
+                    System.out.print("\t ชื่อ:" + std.get("name"));
+                    System.out.println("\t เกรด:" + std.get("grade"));
+                    count++;
+                }
+            }
+
+            System.out.println("3.1: max = " + myMax(score));
+            System.out.println("3.2: min = " + myMin(score));
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static long myMin(long score[]) {
+        long min = Integer.MAX_VALUE;
+        for (int i = 0; i < score.length; i++) {
+            if (min > score[i]) {
+                min = score[i];
+            }
+        }
+
+        return min;
+    }
+
+    public static long myMax(long score[]) {
+        long max = Integer.MIN_VALUE;
+        for (int i = 0; i < score.length; i++) {
+            if (max < score[i]) {
+                max = score[i];
+            }
+        }
+
+        return max;
+    }
+
+    public static long findAvg(long score[]) {
+        long sum = 0;
+        for (int i = 0; i < score.length; i++) {
+            sum += score[i];
+        }
+        long avg = sum / score.length;
+        return avg;
+    }
+}
+
 ```
 
 ## 2. Create Simple Mobile Application
