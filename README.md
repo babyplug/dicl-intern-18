@@ -45,9 +45,9 @@ public class TestJson {
             for (Object o : arr) {
                 JSONObject std = (JSONObject) o;
                 if (((long) std.get("score")) > 70) {
-                    System.out.print("\tคนที่ " + (count + 1));
-                    System.out.print("\t ชื่อ:" + std.get("name"));
-                    System.out.println("\t เกรด:" + std.get("grade"));
+                    System.out.print("\t" + (count + 1));
+                    System.out.print("\tName: " + std.get("name"));
+                    System.out.println("\tGrade: " + std.get("grade"));
                     count++;
                 }
             }
